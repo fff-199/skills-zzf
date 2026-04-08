@@ -1,0 +1,4 @@
+interface:
+  display_name: "ANSYS Fluent Batch"
+  short_description: "Headless Fluent meshing and solving"
+  default_prompt: "Use $ansys-fluent-batch to scaffold a Fluent workspace, run headless meshing or solving, and apply mesh-quality gates before optimization."

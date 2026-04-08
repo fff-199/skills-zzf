@@ -1,0 +1,16 @@
+{
+  "ansys": {
+    "fluent": "D:\\ANSYS\\ANSYS Inc\\v251\\fluent\\ntbin\\win64\\fluent.exe"
+  },
+  "launch": {
+    "dimension": "3ddp",
+    "mode": "meshing",
+    "processors": 4,
+    "gui": false,
+    "additional_arguments": ""
+  },
+  "files": {
+    "journal": "F:\\pyANSYS-AI\\fluent\\journals\\mesh_case_001.jou",
+    "working_dir": "F:\\pyANSYS-AI\\fluent\\runs\\mesh_case_001"
+  }
+}

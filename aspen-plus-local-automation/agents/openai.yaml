@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aspen Plus Automation"
+  short_description: "Local Aspen Plus COM automation"
+  default_prompt: "Use $aspen-plus-local-automation to connect a local Aspen Plus model, automate runs, and export structured results."

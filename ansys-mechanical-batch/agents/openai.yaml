@@ -1,0 +1,4 @@
+interface:
+  display_name: "ANSYS Mechanical Batch"
+  short_description: "Workbench batch Mechanical automation"
+  default_prompt: "Use $ansys-mechanical-batch to inspect a parameterized Workbench project, run a Mechanical batch solve, or scaffold a closed-loop optimization workflow."

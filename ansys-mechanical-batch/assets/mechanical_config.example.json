@@ -1,0 +1,20 @@
+{
+  "ansys": {
+    "runwb2": "D:\\ANSYS\\ANSYS Inc\\v251\\Framework\\bin\\Win64\\RunWB2.exe"
+  },
+  "project": {
+    "wbpj_path": "F:\\pyANSYS-AI\\projects\\your_model.wbpj",
+    "working_dir": "F:\\pyANSYS-AI\\runs\\demo_case"
+  },
+  "design_point": {
+    "name": "0"
+  },
+  "inputs": {
+    "P1": "10 [mm]",
+    "P2": "1000 [N]"
+  },
+  "outputs": [
+    "P3",
+    "P4"
+  ]
+}

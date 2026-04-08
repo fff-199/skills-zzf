@@ -1,0 +1,17 @@
+{
+  "thresholds": {
+    "max_skewness": 0.95,
+    "min_orthogonal_quality": 0.1,
+    "max_negative_cell_count": 0
+  },
+  "required_boundary_zones": [
+    "inlet",
+    "outlet",
+    "wall"
+  ],
+  "required_cell_zones": [
+    "fluid"
+  ],
+  "forbidden_boundary_zones": [],
+  "fail_if_missing_keys": true
+}

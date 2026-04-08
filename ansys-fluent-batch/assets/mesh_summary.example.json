@@ -1,0 +1,16 @@
+{
+  "max_skewness": 0.82,
+  "min_orthogonal_quality": 0.17,
+  "negative_cell_count": 0,
+  "boundary_zone_names": [
+    "inlet",
+    "outlet",
+    "wall"
+  ],
+  "cell_zone_names": [
+    "fluid"
+  ],
+  "notes": [
+    "Example summary only. Replace with data exported from your Fluent meshing workflow."
+  ]
+}
