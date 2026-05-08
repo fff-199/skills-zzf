@@ -32,10 +32,10 @@ Preferred action:
 - write mesh summary files
 - run a quality gate before solving
 
-Useful local template references on this machine:
+Useful template references when ANSYS is installed locally:
 
-- `D:\ANSYS\ANSYS Inc\v251\aisol\CommonFiles\Utilities\Meshing\CutCellMeshingWithFluentTemplate.jou`
-- `D:\ANSYS\ANSYS Inc\v251\aisol\CommonFiles\Utilities\Meshing\TGAutoMeshingWithFluentTemplate.jou`
+- `%ANSYS_ROOT%\aisol\CommonFiles\Utilities\Meshing\CutCellMeshingWithFluentTemplate.jou`
+- `%ANSYS_ROOT%\aisol\CommonFiles\Utilities\Meshing\TGAutoMeshingWithFluentTemplate.jou`
 
 ## 3. Dirty CAD, leaking geometry, or unstable topology
 

@@ -1,7 +1,14 @@
----
-name: aspen-plus-local-automation
-description: Automate local Aspen Plus models on this Windows machine through Python COM using the existing AspenPlus-Python-Interface workspace. Use when a user wants to connect to a local Aspen Plus `.bkp` or `.apw` model, control blocks or streams from code, run closed-loop simulations, perform sensitivity or optimization studies, export Aspen artifacts such as `.rep`, `.sum`, and `.cpm`, or postprocess Aspen outputs into CSV, JSON, or plots.
----
+# aspen-plus-local-automation
+
+Automate local Aspen Plus models on this Windows machine through Python COM using the existing AspenPlus-Python-Interface workspace. Use when a user wants to connect to a local Aspen Plus `.bkp` or `.apw` model, control blocks or streams from code, run closed-loop simulations, perform sensitivity or optimization studies, export Aspen artifacts such as `.rep`, `.sum`, and `.cpm`, or postprocess Aspen outputs into CSV, JSON, or plots.
+
+## Portable Entry Point
+
+- Start here if you are using this repository from a non-Codex agent.
+- The original Codex-oriented source remains in `SKILL.md` for reference.
+- Run bundled scripts relative to this folder, for example `./aspen-plus-local-automation/scripts/...` from the repo root.
+
+## Adapted Instructions
 
 # Aspen Plus Local Automation
 
@@ -67,3 +74,17 @@ After edits to the scaffold or a model mapping:
 3. Run the relevant batch script only after the first two are green.
 
 If a user asks to build a new Aspen automation flow from scratch, start by adapting `starter_project` rather than modifying the original `示例脚本` files.
+
+## Resource Map
+
+### References
+- `references/repo-map.md`
+
+## Portability Notes
+
+- Review Windows absolute paths before running. Replace them with local paths or environment variables.
+- This skill assumes Windows-native tools. Validate tool availability before use on other systems.
+
+## Source
+
+- Original skill definition: `SKILL.md`

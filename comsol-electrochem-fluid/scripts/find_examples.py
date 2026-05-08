@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -43,10 +44,9 @@ class ExampleRecord:
 
 
 def discover_comsol_root() -> Path:
-    env_root = Path.home()  # placeholder to keep type stable
     env_value = None
-    for key in ("COMSOL_ROOT",):
-        value = __import__("os").environ.get(key)
+    for key in ("COMSOL_ROOT", "COMSOL_HOME"):
+        value = os.environ.get(key)
         if value:
             env_value = Path(value)
             break
@@ -55,10 +55,7 @@ def discover_comsol_root() -> Path:
     root = _registry_root()
     if root:
         return root
-    for candidate in (
-        Path(r"F:\comsol\COMSOL63\Multiphysics"),
-        Path(r"C:\Program Files\COMSOL\COMSOL63\Multiphysics"),
-    ):
+    for candidate in _common_roots():
         if (candidate / "applications").exists():
             return candidate
     raise SystemExit("Could not locate COMSOL Multiphysics root. Set COMSOL_ROOT first.")
@@ -81,6 +78,40 @@ def _registry_root() -> Path | None:
         if match:
             return Path(match.group(1)).parents[2]
     return None
+
+
+def _common_roots() -> list[Path]:
+    candidates: list[Path] = []
+    for drive in ("C", "D", "E", "F", "G"):
+        root = Path(f"{drive}:\\")
+        if not root.exists():
+            continue
+        for base in (root / "Program Files", root):
+            candidates.extend(_scan_for_comsol(base))
+    return candidates
+
+
+def _scan_for_comsol(base: Path) -> list[Path]:
+    roots: list[Path] = []
+    try:
+        children = list(base.iterdir())
+    except OSError:
+        return roots
+
+    for child in children:
+        if not child.is_dir() or "COMSOL" not in child.name.upper():
+            continue
+        for candidate in (child, child / "Multiphysics"):
+            if (candidate / "applications").exists():
+                roots.append(candidate)
+        try:
+            grandchildren = list(child.iterdir())
+        except OSError:
+            continue
+        for grandchild in grandchildren:
+            if grandchild.is_dir() and (grandchild / "applications").exists():
+                roots.append(grandchild)
+    return roots
 
 
 def collect_examples(root: Path, modules: list[str], include_geom: bool) -> list[ExampleRecord]:

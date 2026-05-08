@@ -1,8 +1,14 @@
----
-name: screenshot
-description: "Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed."
----
+# screenshot
 
+Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed.
+
+## Portable Entry Point
+
+- Start here if you are using this repository from a non-Codex agent.
+- The original Codex-oriented source remains in `SKILL.md` for reference.
+- Run bundled scripts relative to this folder, for example `./screenshot/scripts/...` from the repo root.
+
+## Adapted Instructions
 
 # Screenshot Capture
 
@@ -10,7 +16,7 @@ Follow these save-location rules every time:
 
 1) If the user specifies a path, save there.
 2) If the user asks for a screenshot without a path, save to the OS default screenshot location.
-3) If Codex needs a screenshot for its own inspection, save to the temp directory.
+3) If the agent needs a screenshot for its own inspection, save to the temp directory.
 
 ## Tool priority
 
@@ -24,7 +30,7 @@ On macOS, run the preflight helper once before window/app capture. It checks
 Screen Recording permission, explains why it is needed, and requests it in one
 place.
 
-The helpers route Swift's module cache to `$TMPDIR/codex-swift-module-cache`
+The helpers route Swift's module cache to `$TMPDIR/agent CLI-swift-module-cache`
 to avoid extra sandbox module-cache prompts.
 
 ```bash
@@ -36,10 +42,10 @@ command when possible:
 
 ```bash
 bash <path-to-skill>/scripts/ensure_macos_permissions.sh && \
-python3 <path-to-skill>/scripts/take_screenshot.py --app "Codex"
+python3 <path-to-skill>/scripts/take_screenshot.py --app "the agent"
 ```
 
-For Codex inspection runs, keep the output in temp:
+For the agent inspection runs, keep the output in temp:
 
 ```bash
 bash <path-to-skill>/scripts/ensure_macos_permissions.sh && \
@@ -64,7 +70,7 @@ Common patterns:
 python3 <path-to-skill>/scripts/take_screenshot.py
 ```
 
-- Temp location (Codex visual check):
+- Temp location (the agent visual check):
 
 ```bash
 python3 <path-to-skill>/scripts/take_screenshot.py --mode temp
@@ -79,19 +85,19 @@ python3 <path-to-skill>/scripts/take_screenshot.py --path output/screen.png
 - App/window capture by app name (macOS only; substring match is OK; captures all matching windows):
 
 ```bash
-python3 <path-to-skill>/scripts/take_screenshot.py --app "Codex"
+python3 <path-to-skill>/scripts/take_screenshot.py --app "the agent"
 ```
 
 - Specific window title within an app (macOS only):
 
 ```bash
-python3 <path-to-skill>/scripts/take_screenshot.py --app "Codex" --window-name "Settings"
+python3 <path-to-skill>/scripts/take_screenshot.py --app "the agent" --window-name "Settings"
 ```
 
 - List matching window ids before capturing (macOS only):
 
 ```bash
-python3 <path-to-skill>/scripts/take_screenshot.py --list-windows --app "Codex"
+python3 <path-to-skill>/scripts/take_screenshot.py --list-windows --app "the agent"
 ```
 
 - Pixel region (x,y,w,h):
@@ -161,7 +167,7 @@ Common patterns:
 powershell -ExecutionPolicy Bypass -File <path-to-skill>/scripts/take_screenshot.ps1
 ```
 
-- Temp location (Codex visual check):
+- Temp location (the agent visual check):
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File <path-to-skill>/scripts/take_screenshot.ps1 -Mode temp
@@ -265,3 +271,25 @@ gnome-screenshot -w -f output/window.png
 - If Linux region/window capture fails, check tool availability with `command -v scrot`, `command -v gnome-screenshot`, and `command -v import`.
 - If saving to the OS default location fails with permission errors in a sandbox, rerun the command with escalated permissions.
 - Always report the saved file path in the response.
+
+## Resource Map
+
+### Scripts
+- `scripts/ensure_macos_permissions.sh`
+- `scripts/macos_display_info.swift`
+- `scripts/macos_permissions.swift`
+- `scripts/macos_window_info.swift`
+- `scripts/take_screenshot.ps1`
+- `scripts/take_screenshot.py`
+
+### Assets
+- `assets/screenshot-small.svg`
+- `assets/screenshot.png`
+
+## Portability Notes
+
+- Review Windows absolute paths before running. Replace them with local paths or environment variables.
+
+## Source
+
+- Original skill definition: `SKILL.md`

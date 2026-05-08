@@ -1,7 +1,14 @@
----
-name: ansys-fluent-batch
-description: Use when the user wants to automate ANSYS Fluent on this Windows machine, especially for headless meshing, mesh quality gating, batch solver runs, existing `.msh`, `.cas`, or `.cas.h5` workflows, Fluent journal (`.jou`) orchestration, or AI closed-loop optimization around Fluent. Prefer this skill when meshing reliability, named zone stability, Watertight Geometry, fault-tolerant meshing, or mesh QA are material risks and avoid treating Fluent as a single-step solver launch.
----
+# ansys-fluent-batch
+
+Use when the user wants to automate ANSYS Fluent on this Windows machine, especially for headless meshing, mesh quality gating, batch solver runs, existing `.msh`, `.cas`, or `.cas.h5` workflows, Fluent journal (`.jou`) orchestration, or AI closed-loop optimization around Fluent. Prefer this skill when meshing reliability, named zone stability, Watertight Geometry, fault-tolerant meshing, or mesh QA are material risks and avoid treating Fluent as a single-step solver launch.
+
+## Portable Entry Point
+
+- Start here if you are using this repository from a non-Codex agent.
+- The original Codex-oriented source remains in `SKILL.md` for reference.
+- Run bundled scripts relative to this folder, for example `./ansys-fluent-batch/scripts/...` from the repo root.
+
+## Adapted Instructions
 
 # ANSYS Fluent Batch
 
@@ -31,21 +38,21 @@ Keep `-g` in batch runs unless the user explicitly needs UI interaction.
 Scaffold a Fluent workspace first:
 
 ```powershell
-python "%SKILLS_ROOT%\ansys-fluent-batch\scripts\bootstrap_workspace.py" `
+python "<repo-root>\ansys-fluent-batch\scripts\bootstrap_workspace.py" `
   --dest "<workspace-root>\fluent"
 ```
 
 Run a headless journal through `fluent.exe`:
 
 ```powershell
-python "%SKILLS_ROOT%\ansys-fluent-batch\scripts\run_fluent_journal.py" `
+python "<repo-root>\ansys-fluent-batch\scripts\run_fluent_journal.py" `
   --config "<workspace-root>\fluent\config\fluent_batch_config.example.json"
 ```
 
 Evaluate a mesh summary against numeric gates:
 
 ```powershell
-python "%SKILLS_ROOT%\ansys-fluent-batch\scripts\evaluate_mesh_quality.py" `
+python "<repo-root>\ansys-fluent-batch\scripts\evaluate_mesh_quality.py" `
   --gate "<workspace-root>\fluent\config\mesh_quality_gate.example.json" `
   --summary "<workspace-root>\fluent\reports\mesh_summary.json"
 ```
@@ -113,3 +120,30 @@ If journal-only control is insufficient:
 - `assets/mesh_summary.example.json`: example input format for the quality-gate script
 - `references/workflow-map.md`: route selection for existing mesh, batch meshing, and dirty CAD
 - `references/mesh-quality-gates.md`: practical QA gates for meshing-first automation
+
+## Resource Map
+
+### Scripts
+- `scripts/bootstrap_workspace.py`
+- `scripts/evaluate_mesh_quality.py`
+- `scripts/fluent_common.py`
+- `scripts/run_fluent_journal.py`
+
+### References
+- `references/mesh-quality-gates.md`
+- `references/workflow-map.md`
+
+### Assets
+- `assets/fluent_batch_config.example.json`
+- `assets/mesh_quality_gate.example.json`
+- `assets/mesh_summary.example.json`
+
+## Portability Notes
+
+- Use repository-relative paths or set SKILLS_ROOT instead of relying on a Codex-specific install path.
+- Review Windows absolute paths before running. Replace them with local paths or environment variables.
+- This skill assumes Windows-native tools. Validate tool availability before use on other systems.
+
+## Source
+
+- Original skill definition: `SKILL.md`

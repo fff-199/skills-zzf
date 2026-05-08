@@ -1,7 +1,14 @@
----
-name: comsol-electrochem-fluid
-description: Use when the user wants to build, adapt, troubleshoot, benchmark, or automate COMSOL models involving electrochemistry, batteries, corrosion, electrodeposition, electrolyzers, fuel cells, fluid flow, microfluidics, porous flow, pipe flow, nonisothermal flow, or electrochemistry-flow couplings on this Windows machine. This skill probes the local COMSOL Application Library through COMSOL_ROOT, the Windows registry, and common install locations, shortlists relevant .mph examples, maps the problem to the right interface or coupling family, and hands off direct automation to comsol-mcp-automation or to local Java or batch toolchains when available.
----
+# comsol-electrochem-fluid
+
+Use when the user wants to build, adapt, troubleshoot, benchmark, or automate COMSOL models involving electrochemistry, batteries, corrosion, electrodeposition, electrolyzers, fuel cells, fluid flow, microfluidics, porous flow, pipe flow, nonisothermal flow, or electrochemistry-flow couplings on this Windows machine. This skill probes the local COMSOL Application Library through `COMSOL_ROOT`, the Windows registry, and common install locations, shortlists relevant `.mph` examples, maps the problem to the right interface or coupling family, and hands off direct automation to `comsol-mcp-automation` or to local Java or batch toolchains when available.
+
+## Portable Entry Point
+
+- Start here if you are using this repository from a non-Codex agent.
+- The original Codex-oriented source remains in `SKILL.md` for reference.
+- Run bundled scripts relative to this folder, for example `./comsol-electrochem-fluid/scripts/...` from the repo root.
+
+## Adapted Instructions
 
 # COMSOL Electrochem Fluid
 
@@ -26,10 +33,10 @@ Run the bundled search script first.
 Common commands:
 
 ```powershell
-python "$env:USERPROFILE\.codex\skills\comsol-electrochem-fluid\scripts\find_examples.py"
-python "$env:USERPROFILE\.codex\skills\comsol-electrochem-fluid\scripts\find_examples.py" --keyword electrolyzer --keyword pem
-python "$env:USERPROFILE\.codex\skills\comsol-electrochem-fluid\scripts\find_examples.py" --module Electrochemistry_Module --module CFD_Module --keyword bubbly
-python "$env:USERPROFILE\.codex\skills\comsol-electrochem-fluid\scripts\find_examples.py" --module Corrosion_Module --keyword localized
+python "<repo-root>\comsol-electrochem-fluid\scripts\find_examples.py"
+python "<repo-root>\comsol-electrochem-fluid\scripts\find_examples.py" --keyword electrolyzer --keyword pem
+python "<repo-root>\comsol-electrochem-fluid\scripts\find_examples.py" --module Electrochemistry_Module --module CFD_Module --keyword bubbly
+python "<repo-root>\comsol-electrochem-fluid\scripts\find_examples.py" --module Corrosion_Module --keyword localized
 ```
 
 If `python` is not on `PATH`, use the full interpreter path instead of the literal `python` command.
@@ -97,3 +104,21 @@ Recommended automation path:
 - Read [references/case-map.md](references/case-map.md) for curated examples and where each family is useful.
 - Read [references/modeling-patterns.md](references/modeling-patterns.md) for interface selection and coupling heuristics.
 
+## Resource Map
+
+### Scripts
+- `scripts/find_examples.py`
+
+### References
+- `references/case-map.md`
+- `references/modeling-patterns.md`
+
+## Portability Notes
+
+- Use repository-relative paths or set `SKILLS_ROOT` instead of relying on a Codex-specific install path.
+- Review Windows absolute paths before running. Replace them with local paths or environment variables.
+- This skill assumes Windows-native tools. Validate tool availability before use on other systems.
+
+## Source
+
+- Original skill definition: `SKILL.md`

@@ -2,9 +2,9 @@
 
 Use this file to map a user problem to the closest local COMSOL example before building or automating anything.
 
-Install root used here:
+Install root pattern used here:
 
-- `F:\comsol\COMSOL63\Multiphysics\applications`
+- `%COMSOL_ROOT%\applications`
 
 ## Electrochemistry Core
 

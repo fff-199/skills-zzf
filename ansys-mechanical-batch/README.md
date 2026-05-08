@@ -1,7 +1,14 @@
----
-name: ansys-mechanical-batch
-description: Use when the user wants to automate ANSYS Workbench Mechanical on this Windows machine, especially for parameterized `.wbpj` projects, batch solves, Workbench journal (`.wbjn`) generation, input/output parameter inspection, parameter sweeps, or AI closed-loop optimization around Mechanical. Prefer this skill when the task fits the pattern "inspect Workbench parameters, set parameter expressions on a design point, run an update, and collect output parameters or results" and avoid direct GUI-only workflows unless batch mode is insufficient.
----
+# ansys-mechanical-batch
+
+Use when the user wants to automate ANSYS Workbench Mechanical on this Windows machine, especially for parameterized `.wbpj` projects, batch solves, Workbench journal (`.wbjn`) generation, input/output parameter inspection, parameter sweeps, or AI closed-loop optimization around Mechanical. Prefer this skill when the task fits the pattern "inspect Workbench parameters, set parameter expressions on a design point, run an update, and collect output parameters or results" and avoid direct GUI-only workflows unless batch mode is insufficient.
+
+## Portable Entry Point
+
+- Start here if you are using this repository from a non-Codex agent.
+- The original Codex-oriented source remains in `SKILL.md` for reference.
+- Run bundled scripts relative to this folder, for example `./ansys-mechanical-batch/scripts/...` from the repo root.
+
+## Adapted Instructions
 
 # ANSYS Mechanical Batch
 
@@ -30,14 +37,14 @@ If batch launch fails, inspect `workbench_console.log` first and confirm the pro
 If the user needs a new automation workspace, scaffold one with:
 
 ```powershell
-python "%SKILLS_ROOT%\ansys-mechanical-batch\scripts\bootstrap_workspace.py" `
+python "<repo-root>\ansys-mechanical-batch\scripts\bootstrap_workspace.py" `
   --dest "<workspace-root>"
 ```
 
 Inspect a project before changing anything:
 
 ```powershell
-python "%SKILLS_ROOT%\ansys-mechanical-batch\scripts\inspect_mechanical_project.py" `
+python "<repo-root>\ansys-mechanical-batch\scripts\inspect_mechanical_project.py" `
   --project "<workspace-root>\projects\your_model.wbpj" `
   --output-dir "<workspace-root>\runs\inspect_case"
 ```
@@ -45,7 +52,7 @@ python "%SKILLS_ROOT%\ansys-mechanical-batch\scripts\inspect_mechanical_project.
 Run a parameterized batch solve after editing the config:
 
 ```powershell
-python "%SKILLS_ROOT%\ansys-mechanical-batch\scripts\run_mechanical_batch.py" `
+python "<repo-root>\ansys-mechanical-batch\scripts\run_mechanical_batch.py" `
   --config "<workspace-root>\config\mechanical_config.example.json"
 ```
 
@@ -118,3 +125,25 @@ If the task is pure structural or thermal solving without a strong Workbench dep
 - `scripts/run_mechanical_batch.py`: apply parameter expressions, solve, and export output parameters
 - `assets/mechanical_config.example.json`: config template for one batch run
 - `assets/mechanical_post_stub.py`: starting point for future in-Mechanical scripting
+
+## Resource Map
+
+### Scripts
+- `scripts/bootstrap_workspace.py`
+- `scripts/inspect_mechanical_project.py`
+- `scripts/run_mechanical_batch.py`
+- `scripts/wbjn_common.py`
+
+### Assets
+- `assets/mechanical_config.example.json`
+- `assets/mechanical_post_stub.py`
+
+## Portability Notes
+
+- Use repository-relative paths or set SKILLS_ROOT instead of relying on a Codex-specific install path.
+- Review Windows absolute paths before running. Replace them with local paths or environment variables.
+- This skill assumes Windows-native tools. Validate tool availability before use on other systems.
+
+## Source
+
+- Original skill definition: `SKILL.md`

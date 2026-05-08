@@ -118,9 +118,9 @@ When the user wants reproducible or AI-driven modeling:
 2. open it in COMSOL Desktop
 3. inspect the exact interface names, couplings, solver setup, and variables
 4. export Java from the validated model
-5. integrate the exported code with `D:\VScode file\comsol`
+5. integrate the exported code with `%COMSOL_AUTOMATION_ROOT%`
 
-Use the local toolkit in `D:\VScode file\comsol` for:
+Use the local toolkit in `%COMSOL_AUTOMATION_ROOT%` for:
 
 - COMSOL path detection
 - Java source templating

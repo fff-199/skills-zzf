@@ -1,20 +1,19 @@
----
-name: playwright
-description: "Terminal-based browser automation via `playwright-cli` or the bundled wrapper script. Use for repeatable CLI browser workflows, traces, screenshots, data extraction, and UI-flow debugging when the task does not need the user's Chrome cookies, logged-in sessions, existing tabs, or extensions; use Chrome for those profile-dependent browser tasks."
----
+# playwright
 
+Use when the task requires automating a real browser from the terminal (navigation, form filling, snapshots, screenshots, data extraction, UI-flow debugging) via `playwright-cli` or the bundled wrapper script.
+
+## Portable Entry Point
+
+- Start here if you are using this repository from a non-Codex agent.
+- The original Codex-oriented source remains in `SKILL.md` for reference.
+- Run bundled scripts relative to this folder, for example `./playwright/scripts/...` from the repo root.
+
+## Adapted Instructions
 
 # Playwright CLI Skill
 
 Drive a real browser from the terminal using `playwright-cli`. Prefer the bundled wrapper script so the CLI works even when it is not globally installed.
 Treat this skill as CLI-first automation. Do not pivot to `@playwright/test` unless the user explicitly asks for test files.
-
-## Route browser work
-
-- Use the Chrome skill/plugin instead when the task needs the user's Chrome profile: cookies, logged-in sessions, existing tabs, browser extensions, remote authenticated sites, or pages already open in Chrome.
-- Use the Browser skill/plugin instead for Codex in-app browser work, especially local app checks on `localhost`, `127.0.0.1`, `::1`, `file://`, or a page shown side by side inside Codex.
-- Continue with this Playwright CLI skill when the user explicitly asks for terminal commands, repeatable scripts, traces, CLI screenshots, isolated browser state, or automation that should not depend on the user's Chrome profile.
-- If a profile-dependent Chrome task fails because the Chrome plugin cannot connect, follow/report the Chrome plugin recovery path instead of silently falling back to a separate Playwright browser.
 
 ## Prerequisite check (required)
 
@@ -41,11 +40,11 @@ Once `npx` is present, proceed with the wrapper script. A global install of `pla
 ## Skill path (set once)
 
 ```bash
-export CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
-export PWCLI="$CODEX_HOME/skills/playwright/scripts/playwright_cli.sh"
+export SKILLS_ROOT="${SKILLS_ROOT:-$HOME/.agent CLI}"
+export PWCLI="./playwright/scripts/playwright_cli.sh"
 ```
 
-User-scoped skills install under `$CODEX_HOME/skills` (default: `~/.codex/skills`).
+User-scoped skills install under `$SKILLS_ROOT/skills` (default: `~/.agent CLI/skills`).
 
 ## Quick start
 
@@ -152,3 +151,24 @@ Open only what you need:
 - Use `--headed` when a visual check will help.
 - When capturing artifacts in this repo, use `output/playwright/` and avoid introducing new top-level artifact folders.
 - Default to CLI commands and workflows, not Playwright test specs.
+
+## Resource Map
+
+### Scripts
+- `scripts/playwright_cli.sh`
+
+### References
+- `references/cli.md`
+- `references/workflows.md`
+
+### Assets
+- `assets/playwright-small.svg`
+- `assets/playwright.png`
+
+## Portability Notes
+
+- Use repository-relative paths or set SKILLS_ROOT instead of relying on a Codex-specific install path.
+
+## Source
+
+- Original skill definition: `SKILL.md`
